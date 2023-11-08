@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>D3 : Random Number Generation - Column Chart</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
+	<style type="text/css">
+		#chartholder {
+			height: 400px;
+			width: 600px;
+		}
+		.bar {
+			display: inline-block;
+			width: 15px;
+			height: 10px; /* Gets overridden by D3 height below */
+			margin-right: 2px;
+			background-color: teal;
+		}
+	</style>
+</head>
+<body>
+	<div id="chartholder"></div>
+
+	<script type="text/javascript">
+		// Random Dataset Generation
+		var data = d3.range(6).map(function() {
+			return Math.random();
+		});
+		
+		// Display a simple Column Chart using the random data
+		var svg = d3.select('#chartholder').selectAll('div')
+			.data(data)
+			.enter()
+			.append('div')
+			.attr('class', 'bar')
+			.style('height', function (d) {
+				return d * 100 + 'px';
+			});
+	</script>
+</body>
+</html>
